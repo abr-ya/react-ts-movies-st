@@ -1,20 +1,35 @@
-import * as React from "react";
+import React, { useState } from "react";
 import { hot } from "react-hot-loader";
-
-const reactLogo = require("./../assets/img/react_logo.svg");
 import "./../assets/scss/App.scss";
 
-class App extends React.Component<Record<string, unknown>, undefined> {
-  public render() {
-    return (
-      <div className="app">
-        <h1>Hello World!</h1>
-        <p>Foo to the barz</p>
-        <img src={reactLogo.default} height="480" />
-      </div>
-    );
-  }
-}
+const App = () => {
+  const [count, setCount] = useState(0);
+
+  return (
+    <div className="App">
+      <header className="App-header">
+        <p className="title">Hello React!</p>
+        <p>
+          <button type="button" onClick={() => setCount((prev) => prev + 1)}>
+            Add 1 to counter
+          </button>
+        </p>
+        <p>{`count is: ${count}`}</p>
+        <p>Edit *.tsx files and save to test HMR updates.</p>
+        <p>
+          <a
+            className="App-link"
+            href="https://reactjs.org"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Learn React!
+          </a>
+        </p>
+      </header>
+    </div>
+  );
+};
 
 declare let module: Record<string, unknown>;
 

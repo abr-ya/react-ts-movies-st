@@ -1,16 +1,20 @@
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-import * as TestUtils from 'react-dom/test-utils';
-import App from '../src/components/App';
+import React from "react";
+import { render, screen } from "@testing-library/react";
+import App from "../src/components/App";
 
-it('App is rendered', () => {
-    // Render App in the document
-    const appElement: App = TestUtils.renderIntoDocument(
-        <App/>
-    );
+describe("App Component ...", () => {
+  beforeEach(() => {
+    render(<App />);
+  });
 
-    const appNode = ReactDOM.findDOMNode(appElement);
+  test("renders Header and it has correct class", () => {
+    const Header = screen.getByText("Hello React!");
+    expect(Header).toBeEnabled();
+    expect(Header).toHaveClass("title");
+  });
 
-    // Verify text content
-    expect(appNode.textContent).toEqual('Hello World!Foo to the barz');
+  test("renders Add counter button", () => {
+    const addButton = screen.getByRole("button", { name: "Add 1 to counter" });
+    expect(addButton).toBeInTheDocument();
+  });
 });
