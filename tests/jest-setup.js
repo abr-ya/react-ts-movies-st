@@ -2,7 +2,7 @@
 import "@testing-library/jest-dom";
 
 // for async
-import 'regenerator-runtime/runtime'
+import "regenerator-runtime/runtime";
 
 import server from "./msw-server";
 // Establish API mocking before all tests.

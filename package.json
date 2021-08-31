@@ -2,16 +2,6 @@
   "name": "react-webpack-typescript-starter",
   "version": "0.1.0",
   "description": "Starter kit for React, Webpack (with Hot Module Replacement), Typescript and Babel.",
-  "keywords": [
-    "react",
-    "webpack",
-    "typescript",
-    "babel",
-    "sass",
-    "hmr",
-    "starter",
-    "boilerplate"
-  ],
   "author": "Viktor Persson",
   "license": "MIT",
   "repository": {
@@ -26,6 +16,7 @@
     "build": "yarn run clean-dist && webpack --config=configs/webpack/prod.js",
     "clean-dist": "rimraf dist/*",
     "lint": "eslint './src/**/*.{js,ts,tsx}' --quiet",
+    "fix": "eslint './src/**/*.{js,ts,tsx}' --fix",
     "start": "yarn run start-dev",
     "start-dev": "webpack serve --config=configs/webpack/dev.js",
     "start-prod": "yarn run build && node express.js",
@@ -45,6 +36,7 @@
     "@types/node": "^16.7.2",
     "@types/react": "^17.0.19",
     "@types/react-dom": "^17.0.9",
+    "@types/react-router-dom": "^5.1.8",
     "@typescript-eslint/eslint-plugin": "^4.29.3",
     "@typescript-eslint/parser": "^4.29.3",
     "babel-loader": "^8.2.2",
@@ -75,6 +67,10 @@
     "webpack-merge": "^5.8.0"
   },
   "dependencies": {
-    "axios": "^0.21.1"
+    "axios": "^0.21.1",
+    "bootstrap": "^5.1.0",
+    "react-bootstrap": "^1.6.1",
+    "react-router-dom": "^5.2.1",
+    "react-select": "^4.3.1"
   }
 }
