@@ -16,7 +16,6 @@ const Home = (): JSX.Element => {
   const [page, setPage] = useState(1);
 
   useEffect(() => {
-    console.log(process.env.API_KEY);
     console.log(query, page, sorting);
     if (query) {
       // в управляющих компонентах мы чистим query, когда discover

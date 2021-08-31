@@ -1,6 +1,8 @@
 import axios from "axios";
 import { IMovie } from "../interfaces";
 
+export const cancelTokenSource = axios.CancelToken.source();
+
 const baseUrl = "https://api.themoviedb.org/3/";
 const apiKey = process.env.API_KEY;
 
@@ -61,6 +63,8 @@ const selectOneMovieFields = (item: any) => ({
 });
 
 export const getMovie = async (id: string) => {
-  const response = await axios.get(`${baseUrl}movie/${id}?api_key=${apiKey}`);
+  const response = await axios.get(`${baseUrl}movie/${id}?api_key=${apiKey}`, {
+    cancelToken: cancelTokenSource.token,
+  });
   return response.status === 200 ? selectOneMovieFields(response.data) : false;
 };
