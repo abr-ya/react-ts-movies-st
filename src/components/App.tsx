@@ -1,9 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { hot } from "react-hot-loader";
 import "./../assets/scss/App.scss";
+import axios from "axios";
 
 const App = () => {
   const [count, setCount] = useState(0);
+  const [scoops, setScoops] = useState([]);
+
+  useEffect(() => {
+    const cancelTokenSource = axios.CancelToken.source();
+    axios
+      .get("http://localhost:3030/scoops", {
+        cancelToken: cancelTokenSource.token,
+      })
+      .then((res) => setScoops(res.data))
+      .catch((e) => {
+        if (axios.isCancel(e)) {
+          console.log("Request canceled, error message: ", e.message);
+        } else {
+          console.log("Error: ", e.message);
+        }
+      });
+
+    return () => {
+      cancelTokenSource.cancel("Cancel in useEffect Cleaner.");
+    };
+  }, []);
 
   return (
     <div className="App">
@@ -26,6 +48,7 @@ const App = () => {
             Learn React!
           </a>
         </p>
+        <p>{`We have data about ${scoops.length} scoops`}</p>
       </header>
     </div>
   );
