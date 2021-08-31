@@ -2,7 +2,7 @@ import axios from "axios";
 import { IMovie } from "../interfaces";
 
 const baseUrl = "https://api.themoviedb.org/3/";
-const apiKey = import.meta.env.VITE_API_TMDB;
+const apiKey = process.env.API_KEY;
 
 // поиск или подборка
 const selectFields = (item: any) => ({
