@@ -49,7 +49,7 @@ const Home = ({
       <RequestSetup
         query={query}
         page={page}
-        pages={10}
+        pages={totalPages || 10}
         setPage={setPage}
         setSorting={setSorting}
         setQuery={setQuery}
