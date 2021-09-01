@@ -16,7 +16,10 @@ module.exports = merge(commonConfig, {
   devtool: "source-map",
   plugins: [
     new CopyPlugin({
-      patterns: [{ from: "images", to: "images" }],
+      patterns: [
+        { from: "images", to: "images" },
+        { from: "public", to: "./" },
+      ],
     }),
   ],
 });
