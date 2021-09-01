@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import RequestSetup from "../components/RequestSetup/RequestSetup";
-import MoviesList from "../components/MoviesList/MoviesList";
+import MoviesList from "../components/MoviesList/MoviesListContainer";
 
 export interface IMoviePage {
   setLoading: (id: boolean) => void;
@@ -9,19 +9,26 @@ export interface IMoviePage {
   totalPages: number;
 }
 
-// { setLoading, getDiscoverSaga, findMoviesSaga, totalPages }: IMoviePage
-const Home = (): JSX.Element => {
+const Home = ({
+  setLoading,
+  getDiscoverSaga,
+  findMoviesSaga,
+  totalPages,
+}: IMoviePage): JSX.Element => {
   const [sorting, setSorting] = useState("popularity.desc");
   const [query, setQueryState] = useState("");
   const [page, setPage] = useState(1);
 
   useEffect(() => {
     console.log(query, page, sorting);
+    setLoading(true); // лоадинг здесь для эмуляции "долгой" загрузки
     if (query) {
       // в управляющих компонентах мы чистим query, когда discover
-      // запрос на поиск
+      setTimeout(() => {
+        findMoviesSaga(query, page);
+      }, 500);
     } else {
-      // запрос на обзор
+      getDiscoverSaga(sorting, page);
     }
   }, [query, page, sorting]);
 
