@@ -12,10 +12,9 @@ export interface IMoviePage {
 
 const MoviePage = ({ movie, getMovieSaga }: IMoviePage): JSX.Element => {
   const { id }: { id: string } = useParams();
-  const [data, setData] = useState(null);
   // https://eslint.org/docs/rules/no-prototype-builtins
-  // const hasMovieInRedux = Object.prototype.hasOwnProperty.call(movie, id);
-  const hasMovieInRedux = Object.prototype.hasOwnProperty.call(movie, id);
+  const hasMovieInRedux =
+    movie && id && Object.prototype.hasOwnProperty.call(movie, id);
   useEffect(() => {
     if (!hasMovieInRedux) {
       setTimeout(() => {

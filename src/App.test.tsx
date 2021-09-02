@@ -1,10 +1,11 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
+import { renderWithRedux } from "../tests/testing-library-utils";
 import App from "./App";
 
 describe("App Component ...", () => {
   beforeEach(() => {
-    render(<App />);
+    renderWithRedux(<App />, {});
   });
 
   test("renders Title App and it has correct class", () => {
@@ -14,10 +15,12 @@ describe("App Component ...", () => {
   });
 });
 
-// test("Displays correct count of scoop option from server", async () => {
-//   // асинхронно, чтобы обработать запрос MSW
-//   render(<App />);
+test("Хоббиты упоминаются в ответе 6 раз...", async () => {
+  // асинхронно, чтобы обработать запрос MSW
+  renderWithRedux(<App />, {});
 
-//   const scoopCountText = await screen.findByText("We have data about 2 scoops");
-//   expect(scoopCountText).toBeInTheDocument();
-// });
+  const Hobbits = await screen.findAllByText(/hobbit/i);
+  //console.log(Hobbits);
+  //screen.debug();
+  expect(Hobbits).toHaveLength(6);
+});

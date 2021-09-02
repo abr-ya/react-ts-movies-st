@@ -20,10 +20,9 @@ const Home = ({
   const [page, setPage] = useState(1);
 
   useEffect(() => {
-    console.log(query, page, sorting);
     setLoading(true); // лоадинг здесь для эмуляции "долгой" загрузки
+    // в управляющих компонентах мы чистим query, когда discover
     if (query) {
-      // в управляющих компонентах мы чистим query, когда discover
       setTimeout(() => {
         findMoviesSaga(query, page);
       }, 500);
