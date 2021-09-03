@@ -7,7 +7,7 @@ export interface IMovieCard {
   data: IMovie;
 }
 
-const MovieCard = ({ data }: IMovieCard) => (
+const MovieCard = ({ data }: IMovieCard): JSX.Element => (
   <div className="col-md-12">
     <div className={`${styles.card} card mb-3 flex-row`}>
       {data.poster && (

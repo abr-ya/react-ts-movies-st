@@ -1,5 +1,5 @@
 import React from "react";
-import { screen } from "@testing-library/react";
+import { screen, fireEvent, act } from "@testing-library/react";
 import { renderWithRedux } from "../tests/testing-library-utils";
 import App from "./App";
 
@@ -23,4 +23,19 @@ test("Хоббиты упоминаются в ответе 6 раз...", async 
   //console.log(Hobbits);
   //screen.debug();
   expect(Hobbits).toHaveLength(6);
+});
+
+test("Поиск фильма...", async () => {
+  // асинхронно, чтобы обработать запрос MSW
+  const { findByLabelText, findByTestId } = renderWithRedux(<App />, {});
+
+  const input = await findByLabelText("Search");
+  const form = await findByTestId("form");
+
+  act(() => {
+    fireEvent.change(input, { target: { value: "Hobbit" } });
+    fireEvent.submit(form);
+  });
+
+  // и что тут проверить ?
 });

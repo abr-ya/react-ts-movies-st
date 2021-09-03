@@ -6,11 +6,12 @@ interface IBsSearch {
 }
 
 const BsSearch = ({ setter, value }: IBsSearch): JSX.Element => {
-  const [text, setText] = useState("");
+  const [text, setText] = useState(value);
 
   const submitHandler = (e: React.SyntheticEvent) => {
     e.preventDefault();
     setter(text);
+    setText("");
   };
 
   useEffect(() => {
@@ -18,7 +19,7 @@ const BsSearch = ({ setter, value }: IBsSearch): JSX.Element => {
   }, [value]);
 
   return (
-    <form onSubmit={submitHandler}>
+    <form onSubmit={submitHandler} data-testid="form">
       <input
         className="form-control"
         type="text"

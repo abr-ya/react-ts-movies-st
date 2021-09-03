@@ -4,4 +4,4 @@ import ReduxProvider from "../src/redux/ReduxProvider";
 const renderWithRedux = (ui, options) =>
   render(ui, { wrapper: ReduxProvider, ...options });
 
-export { renderWithRedux }; // переопределяем
+export { renderWithRedux };
