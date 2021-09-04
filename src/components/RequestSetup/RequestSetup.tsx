@@ -8,9 +8,9 @@ interface IRequestSetup {
   query: string;
   page: number;
   pages: number;
-  setPage: any;
-  setSorting: any;
-  setQuery: any;
+  setPage: (arg: number) => void;
+  setSorting: (arg: string) => void;
+  setQuery: (arg: string) => void;
 }
 interface ISortingOption {
   value: string;
@@ -25,10 +25,7 @@ const RequestSetup = ({
   setSorting,
   setQuery,
 }: IRequestSetup): JSX.Element => {
-  const [innerSorting, setInnerSorting] = useState<ISortingOption>({
-    value: "",
-    label: "",
-  });
+  const [innerSorting, setInnerSorting] = useState<ISortingOption | null>(null);
 
   const sortingOptions: ISortingOption[] = [
     { value: "popularity.desc", label: "sort by Popularity" },
@@ -49,7 +46,7 @@ const RequestSetup = ({
   const searchHandler = (newQuery: string) => {
     setQuery(newQuery);
     setPage(1);
-    setInnerSorting({ value: "", label: "" });
+    setInnerSorting(null);
   };
 
   return (
@@ -60,10 +57,9 @@ const RequestSetup = ({
           className={styles.select}
           placeholder="... или подборка"
           value={innerSorting}
-          onChange={(option) =>
-            sortingHandler(option || { value: "", label: "" })
-          }
+          onChange={sortingHandler}
           options={sortingOptions}
+          aria-label="discoverSelect"
         />
       </div>
       <Pagination active={page} pages={pages} setActive={pageHandler} />
