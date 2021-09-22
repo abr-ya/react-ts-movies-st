@@ -1,0 +1,15 @@
+.reposBadge {
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.selectWrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.selectWrapper > form,
+.selectWrapper > .select {
+  width: calc(50% - 5px);
+  margin-bottom: 20px;
+}

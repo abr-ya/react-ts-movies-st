@@ -1,4 +1,5 @@
 // shared config (dev and prod)
+const Dotenv = require("dotenv-webpack");
 const { resolve } = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
@@ -31,7 +32,10 @@ module.exports = {
       },
     ],
   },
-  plugins: [new HtmlWebpackPlugin({ template: "index.html.ejs" })],
+  plugins: [
+    new HtmlWebpackPlugin({ template: "index.html.ejs" }),
+    new Dotenv(),
+  ],
   externals: {
     react: "React",
     "react-dom": "ReactDOM",
